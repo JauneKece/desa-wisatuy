@@ -40,7 +40,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="color: #957C62; focus-ring-color: #B77466; focus-ring-offset-color: #FFE1AF;" href="{{ route('login') }}">
+            <a class="no-underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="color: #957C62; focus-ring-color: #B77466; focus-ring-offset-color: #FFE1AF;" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

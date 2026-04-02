@@ -32,7 +32,7 @@
         <div class="p-4 rounded-lg" style="background-color: #FFF3CD; border-left: 4px solid #FFC107;">
             <p class="text-sm" style="color: #857704;">
                 📧 Email Anda belum diverifikasi.
-                <button form="send-verification" class="font-semibold underline" style="color: #857704;">
+                <button form="send-verification" class="font-semibold no-underline" style="color: #857704;">
                     Klik di sini untuk mengirim ulang email verifikasi.
                 </button>
             </p>

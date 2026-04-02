@@ -99,7 +99,7 @@
                     <!-- Buttons with smooth animations -->
                     <div class="flex flex-col gap-3 md:gap-4 justify-center items-center">
                         @if (!auth()->check())
-                            <a href="{{ route('register') }}" class="group relative px-6 md:px-10 py-2 md:py-4 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center" style="background-color: #B77466;">
+                            <a href="{{ route('register') }}" class="no-underline group relative px-6 md:px-10 py-2 md:py-4 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center" style="background-color: #B77466;">
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transition-all duration-300" style="background: rgba(149, 124, 98, 0.3);"></span>
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" style="background-color: #957C62;"></span>
                                 <span class="relative flex items-center gap-2">
@@ -107,7 +107,7 @@
                                     <span>Daftar</span>
                                 </span>
                             </a>
-                            <a href="{{ route('login') }}" class="group relative px-6 md:px-10 py-2 md:py-4 font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center border-2" style="border-color: #B77466; color: #957C62;">
+                            <a href="{{ route('login') }}" class="no-underline group relative px-6 md:px-10 py-2 md:py-4 font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center border-2" style="border-color: #B77466; color: #957C62;">
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transition-all duration-300" style="background-color: rgba(226, 181, 154, 0.5);"></span>
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" style="background-color: #B77466;"></span>
                                 <span class="relative flex items-center gap-2 transition-colors group-hover:text-white duration-300">
@@ -116,7 +116,7 @@
                                 </span>
                             </a>
                         @else
-                            <a href="{{ route('reservasi.create') }}" class="group relative px-6 md:px-10 py-2 md:py-4 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center" style="background-color: #B77466;">
+                            <a href="{{ route('reservasi.create') }}" class="no-underline group relative px-6 md:px-10 py-2 md:py-4 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center" style="background-color: #B77466;">
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transition-all duration-300" style="background: rgba(149, 124, 98, 0.3);"></span>
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" style="background-color: #957C62;"></span>
                                 <span class="relative flex items-center gap-2">
@@ -124,7 +124,7 @@
                                     <span>Reservasi</span>
                                 </span>
                             </a>
-                            <a href="{{ route('dashboard') }}" class="group relative px-6 md:px-10 py-2 md:py-4 font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center border-2" style="border-color: #B77466; color: #957C62;">
+                            <a href="{{ route('dashboard') }}" class="no-underline group relative px-6 md:px-10 py-2 md:py-4 font-bold text-xs md:text-base uppercase tracking-wide rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg w-full md:w-auto flex items-center justify-center border-2" style="border-color: #B77466; color: #957C62;">
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transition-all duration-300" style="background-color: rgba(226, 181, 154, 0.5);"></span>
                                 <span class="absolute inset-0 rounded-lg md:rounded-xl transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" style="background-color: #B77466;"></span>
                                 <span class="relative flex items-center gap-2 transition-colors group-hover:text-white duration-300">
@@ -161,7 +161,7 @@
                 <h2 class="text-lg md:text-5xl font-outfit font-black mb-1 md:mb-2" style="color: #957C62;">🏞️ Objek Wisata</h2>
                 <p class="text-xs md:text-base" style="color: #B77466;">Temukan destinasi wisata terbaik</p>
             </div>
-            <a href="{{ route('objek-wisata.index') }}" class="inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded text-xs md:text-base transition-all duration-300 whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+            <a href="{{ route('objek-wisata.index') }}" class="no-underline inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded text-xs md:text-base transition-all duration-300 whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                 Semua →
             </a>
         </div>
@@ -195,7 +195,7 @@
                             </span>
                         </div>
                         
-                        <a href="{{ route('objek-wisata.show', $objek) }}" class="block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                        <a href="{{ route('objek-wisata.show', $objek) }}" class="no-underline block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                             Detail →
                         </a>
                     </div>
@@ -217,7 +217,7 @@
                 <h2 class="text-lg md:text-5xl font-outfit font-black mb-1 md:mb-2" style="color: #957C62;">🎒 Paket Wisata</h2>
                 <p class="text-xs md:text-base" style="color: #B77466;">Pilih paket sesuai kebutuhan Anda</p>
             </div>
-            <a href="{{ route('paket-wisata.index') }}" class="inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+            <a href="{{ route('paket-wisata.index') }}" class="no-underline inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                 Semua →
             </a>
         </div>
@@ -257,7 +257,7 @@
                             </p>
                         </div>
                         
-                        <a href="{{ route('paket-wisata.show', $paket) }}" class="block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                        <a href="{{ route('paket-wisata.show', $paket) }}" class="no-underline block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                             Detail →
                         </a>
                     </div>
@@ -279,7 +279,7 @@
                 <h2 class="text-lg md:text-5xl font-outfit font-black mb-1 md:mb-2" style="color: #957C62;">🏨 Penginapan</h2>
                 <p class="text-xs md:text-base" style="color: #B77466;">Menginap nyaman selama liburan</p>
             </div>
-            <a href="{{ route('penginapan.index') }}" class="inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+            <a href="{{ route('penginapan.index') }}" class="no-underline inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                 Semua →
             </a>
         </div>
@@ -319,7 +319,7 @@
                             </p>
                         </div>
                         
-                        <a href="{{ route('penginapan.show', $akomodasi) }}" class="block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                        <a href="{{ route('penginapan.show', $akomodasi) }}" class="no-underline block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                             Detail →
                         </a>
                     </div>
@@ -341,7 +341,7 @@
                 <h2 class="text-lg md:text-5xl font-outfit font-black mb-1 md:mb-2" style="color: #957C62;">📰 Berita & Info</h2>
                 <p class="text-xs md:text-base" style="color: #B77466;">Informasi terbaru Desa Jomok</p>
             </div>
-            <a href="{{ route('berita.index') }}" class="inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+            <a href="{{ route('berita.index') }}" class="no-underline inline-block px-3 md:px-6 py-1.5 md:py-3 text-white font-semibold rounded transition-all duration-300 text-xs md:text-base whitespace-nowrap w-full md:w-auto text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                 Semua →
             </a>
         </div>
@@ -371,7 +371,7 @@
                         <h3 class="text-xs md:text-lg font-outfit font-bold mb-1 line-clamp-2" style="color: #957C62;">{{ $item->judul }}</h3>
                         <p class="text-xs line-clamp-2 md:line-clamp-3 mb-2 md:mb-3" style="color: #B77466;">{{ strip_tags($item->konten) }}</p>
                         
-                        <a href="{{ route('berita.show', $item) }}" class="block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                        <a href="{{ route('berita.show', $item) }}" class="no-underline block w-full text-center py-1.5 md:py-2 px-3 text-white font-semibold rounded transition-all duration-300 text-xs" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                             Baca →
                         </a>
                     </div>
@@ -399,19 +399,19 @@
             
             <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                 @if (!auth()->check())
-                    <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                    <a href="{{ route('register') }}" class="no-underline inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                         <span class="text-lg md:text-xl mr-1 md:mr-2">⭐</span>
                         <span>Daftar</span>
                     </a>
-                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #E2B59A; border: 2px solid #B77466;" onmouseover="this.style.backgroundColor='#B77466'" onmouseout="this.style.backgroundColor='#E2B59A'">
+                    <a href="{{ route('login') }}" class="no-underline inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #E2B59A; border: 2px solid #B77466;" onmouseover="this.style.backgroundColor='#B77466'" onmouseout="this.style.backgroundColor='#E2B59A'">
                         <span>Login</span>
                     </a>
                 @else
-                    <a href="{{ route('reservasi.create') }}" class="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
+                    <a href="{{ route('reservasi.create') }}" class="no-underline inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                         <span class="text-lg md:text-xl mr-1 md:mr-2">📅</span>
                         <span>Reservasi</span>
                     </a>
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #E2B59A; border: 2px solid #B77466;" onmouseover="this.style.backgroundColor='#B77466'" onmouseout="this.style.backgroundColor='#E2B59A'">
+                    <a href="{{ route('dashboard') }}" class="no-underline inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 text-white font-bold text-xs md:text-base uppercase tracking-wide rounded-lg transition duration-150 hover:scale-105 active:scale-95" style="background-color: #E2B59A; border: 2px solid #B77466;" onmouseover="this.style.backgroundColor='#B77466'" onmouseout="this.style.backgroundColor='#E2B59A'">
                         <span class="text-lg md:text-xl mr-1 md:mr-2">📊</span>
                         <span>Dashboard</span>
                     </a>

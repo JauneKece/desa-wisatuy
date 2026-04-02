@@ -69,14 +69,41 @@
 	h4 { @apply text-xl; }
 
 	a {
-		color: #B77466;
-		transition-duration: 300ms;
+			color: #B77466;
+			transition-duration: 300ms;
+			text-decoration: none;
 	}
 
 	a:hover {
-		color: #957C62;
-		text-decoration-line: underline;
+			color: #957C62;
+			text-decoration-line: underline;
 	}
+
+/* Make anchors styled as buttons never show underline */
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.desmok-btn,
+.group.relative > span,
+.desmok-btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-outline:hover {
+	text-decoration: none !important;
+}
+
+/* Utility class to explicitly remove underline on anchors/buttons */
+.no-underline,
+.no-underline:hover {
+	text-decoration: none !important;
+}
+
+/* Broad rule to ensure anchors styled as buttons don't show underline */
+a[style*="background-color"],
+a[class*="px-"],
+a[class*="py-"] {
+    text-decoration: none !important;
+}
 
 	p {
 		color: #B77466;

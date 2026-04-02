@@ -177,13 +177,16 @@
 
         .btn-primary-auth {
             background-color: #B77466;
-            color: white;
+            color: #FFFDF5 !important;
         }
 
-        .btn-primary-auth:hover {
+        .btn-primary-auth:hover,
+        .btn-primary-auth:focus,
+        .btn-primary-auth:active {
             background-color: #957C62;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(183, 116, 102, 0.3);
+            color: #FFFDF5 !important;
         }
 
         .btn-secondary-auth {

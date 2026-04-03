@@ -174,14 +174,9 @@
                 }
             });
 
-            // Add keyboard navigation shortcut
-            document.addEventListener('keydown', function(e) {
-                // Press 'h' to go home
-                if (e.key === 'h' && !e.ctrlKey && !e.metaKey) {
-                    const homeLink = document.querySelector('a[href="' + '{{ route("home") }}' + '"]');
-                    if (homeLink) homeLink.click();
-                }
-            });
+            // REMOVED: Keyboard shortcut 'h' to home was causing issues when typing
+            // Users were being redirected to home while typing text containing 'h' in form fields
+            // This was problematic UX as it would lose form data unexpectedly
 
             // Page transition on link click
             document.querySelectorAll('a:not([target="_blank"]):not([href^="javascript"])').forEach(link => {

@@ -50,7 +50,7 @@
                 </div>
 
                 <div>
-                    <label for="jumlah_peserta" class="block text-sm md:text-base font-bold mb-2" style="color: #957C62;">Jumlah Peserta</label>
+                    <label for="jumlah_peserta" class="block text-sm md:text-base font-bold mb-2" style="color: #957C62;">Jumlah Pengunjung</label>
                     <input type="number" class="w-full px-4 py-2 rounded-lg border-2 focus:outline-none focus:ring-2" style="border-color: #E2B59A; background-color: #FFE1AF; color: #957C62;" id="jumlah_peserta" name="jumlah_peserta" value="{{ old('jumlah_peserta', 1) }}" min="1" required>
                     @error('jumlah_peserta')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

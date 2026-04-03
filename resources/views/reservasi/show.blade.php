@@ -29,7 +29,7 @@
 
             <!-- Jumlah Peserta -->
             <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
-                <p class="text-sm font-bold mb-2" style="color: #957C62;">👥 Jumlah Peserta</p>
+                <p class="text-sm font-bold mb-2" style="color: #957C62;">👥 Jumlah Pengunjung</p>
                 <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->jumlah_peserta }} orang</p>
             </div>
         </div>

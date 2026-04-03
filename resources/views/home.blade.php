@@ -315,7 +315,7 @@
                         
                         <div class="mb-2 md:mb-3 text-center">
                             <p class="text-sm md:text-lg font-outfit font-bold" style="color: #957C62;">
-                                Rp{{ number_format($akomodasi->harga_penginapan, 0, ',', '.') }}<span class="text-xs" style="color: #B77466;">/ml</span>
+                                Rp{{ number_format($akomodasi->harga_penginapan, 0, ',', '.') }}<span class="text-xs" style="color: #B77466;">/malam</span>
                             </p>
                         </div>
                         

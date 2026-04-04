@@ -40,6 +40,16 @@ export default {
                     800: '#1e293b',
                     900: '#0f172a',
                 },
+                custom: {
+                    faf8: '#fafaf8',
+                    white: '#ffffff',
+                },
+                bg: {
+                    custom: {
+                        faf8: '#fafaf8',
+                        white: '#ffffff',
+                    },
+                },
             },
             animation: {
                 'float-up': 'float-up 0.6s ease-out',

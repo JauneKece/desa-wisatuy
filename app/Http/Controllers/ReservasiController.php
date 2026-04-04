@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservasi;
+use App\Models\Payment;
 use App\Models\Pelanggan;
 use App\Models\PaketWisata;
 use App\Models\Penginapan;
@@ -53,12 +54,31 @@ class ReservasiController extends Controller
         $validated['status'] = 'pending';
         $validated['total_harga'] = $this->calculateTotal($validated);
 
-        Reservasi::create($validated);
-        return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dibuat');
+        $reservasi = Reservasi::create($validated);
+
+        // Create pending payment record (customer will upload proof or use gateway)
+        Payment::create([
+            'reservasi_id' => $reservasi->id,
+            'amount' => $validated['total_harga'] ?? 0,
+            'method' => 'manual',
+            'status' => 'pending',
+            'transaction_id' => \Illuminate\Support\Str::uuid(),
+        ]);
+
+        // Use direct URL redirect to avoid missing named-route issues
+        return redirect()->to('/reservasi/'.$reservasi->id.'/payment/manual')->with('success', 'Reservasi berhasil dibuat. Silakan upload bukti pembayaran.');
     }
 
-    public function show(Reservasi $reservasi)
+    public function show(Reservasi $reservasi, Request $request)
     {
+        $user = $request->user();
+        
+        // Admin/Manager get a different view with combined details
+        if ($user && in_array($user->role, ['admin', 'manager'])) {
+            return view('admin.reservasi.show', compact('reservasi'));
+        }
+        
+        // Customers get the regular view
         return view('reservasi.show', compact('reservasi'));
     }
 
@@ -97,10 +117,10 @@ class ReservasiController extends Controller
             'catatan' => 'nullable|string',
         ]);
 
-        // Only admin/manager can change status (confirm, complete, cancel).
+        // Only admin/manager can change status (confirm, cancel).
         if (in_array($user->role, ['admin', 'manager'])) {
             $validated['status'] = $request->validate([
-                'status' => 'required|in:pending,confirmed,completed,cancelled',
+                'status' => 'required|in:pending,confirmed,cancelled',
             ])['status'];
         }
 
@@ -116,9 +136,12 @@ class ReservasiController extends Controller
             return redirect()->route('login');
         }
 
+        // Customer can only delete their own reservasi
         if ($user->role === 'customer' && (! $reservasi->pelanggan || $reservasi->pelanggan->user_id !== $user->id)) {
             abort(403, 'Unauthorized');
         }
+
+        // Admin & Manager can delete any reservasi
 
         $reservasi->delete();
         return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');

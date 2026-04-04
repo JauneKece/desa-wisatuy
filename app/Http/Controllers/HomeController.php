@@ -58,7 +58,6 @@ class HomeController extends Controller
         $totalReservasi = Reservasi::count();
         $pendingReservasi = Reservasi::where('status', 'pending')->count();
         $confirmedReservasi = Reservasi::where('status', 'confirmed')->count();
-        $completedReservasi = Reservasi::where('status', 'completed')->count();
         
         $totalObjekWisata = ObjekWisata::count();
         $totalPaketWisata = PaketWisata::count();
@@ -81,7 +80,7 @@ class HomeController extends Controller
         
         return view('dashboard.admin', compact(
             'totalUsers', 'totalCustomers', 'totalStaff', 'totalManagers',
-            'totalReservasi', 'pendingReservasi', 'confirmedReservasi', 'completedReservasi',
+            'totalReservasi', 'pendingReservasi', 'confirmedReservasi',
             'totalObjekWisata', 'totalPaketWisata', 'totalPenginapan', 'totalBerita',
             'totalRevenue', 'revenueThisMonth',
             'recentReservasi', 'recentBerita'
@@ -165,7 +164,7 @@ class HomeController extends Controller
             // Create pelanggan profile if not exists
             $pelanggan = Pelanggan::create([
                 'user_id' => $user->id,
-                'nomor_identitas' => '',
+                'nomor_identitas' => null,
                 'jenis_identitas' => 'KTP',
                 'alamat' => '',
                 'kota' => '',
@@ -190,7 +189,7 @@ class HomeController extends Controller
         
         $completedReservasi = Reservasi::whereHas('pelanggan', function($q) use ($user) {
             $q->where('user_id', $user->id);
-        })->where('status', 'completed')->count();
+        })->where('status', 'confirmed')->count();
         
         // Total spent
         $totalSpent = Reservasi::whereHas('pelanggan', function($q) use ($user) {
@@ -210,7 +209,7 @@ class HomeController extends Controller
         
         return view('dashboard.customer', compact(
             'pelanggan',
-            'totalReservasi', 'pendingReservasi', 'confirmedReservasi', 'completedReservasi',
+            'totalReservasi', 'pendingReservasi', 'confirmedReservasi',
             'totalSpent',
             'recentReservasi',
             'featuredPaket', 'featuredPenginapan'

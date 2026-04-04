@@ -52,8 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::patch('/reservasi/{reservasi}', [ReservasiController::class, 'update'])->name('reservasi.update');
     });
 
-    // Customer can delete their own reservasi
-    Route::middleware('check.role:customer')->group(function () {
+    // Customer, Admin & Manager can delete reservasi
+    Route::middleware('check.role:customer,admin,manager')->group(function () {
         Route::delete('/reservasi/{reservasi}', [ReservasiController::class, 'destroy'])->name('reservasi.destroy');
     });
     
@@ -72,7 +72,24 @@ Route::middleware('auth')->group(function () {
         Route::patch('/berita/{berita}', [BeritaController::class, 'update'])->name('berita.update');
         Route::delete('/berita/{berita}', [BeritaController::class, 'destroy'])->name('berita.destroy');
     });
+
+    // Payments (authenticated)
+    Route::post('/payments/initiate', [\App\Http\Controllers\PaymentController::class, 'initiate'])->name('payments.initiate');
+    Route::get('/reservasi/{reservasi}/payment/manual', [\App\Http\Controllers\PaymentController::class, 'showManual'])->name('payments.manual.form');
+    Route::post('/payments/manual', [\App\Http\Controllers\PaymentController::class, 'manualUpload'])->name('payments.manual');
+    Route::get('/payments/{payment}', [\App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show');
+    Route::put('/payments/{payment}/reupload', [\App\Http\Controllers\PaymentController::class, 'reupload'])->name('payments.reupload');
+
+    // Admin views for payments
+    Route::middleware('check.role:admin,manager')->group(function () {
+        Route::get('/admin/payments', [\App\Http\Controllers\PaymentController::class, 'adminIndex'])->name('admin.payments.index');
+        Route::get('/admin/payments/{payment}', [\App\Http\Controllers\PaymentController::class, 'adminShow'])->name('admin.payments.show');
+        Route::post('/admin/payments/{payment}/verify', [\App\Http\Controllers\PaymentController::class, 'verify'])->name('admin.payments.verify');
+    });
 });
 
 require __DIR__.'/auth.php';
+
+// Payment gateway webhook (public)
+Route::post('/payments/webhook', [\App\Http\Controllers\WebhookController::class, 'handle'])->name('payments.webhook');
 

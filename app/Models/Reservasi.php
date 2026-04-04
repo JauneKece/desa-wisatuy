@@ -48,4 +48,20 @@ class Reservasi extends Model
     {
         return $this->belongsTo(Penginapan::class);
     }
+
+    /**
+     * Get payments for the reservasi.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
+     * Get latest payment record.
+     */
+    public function latestPayment()
+    {
+        return $this->hasOne(Payment::class)->latestOfMany();
+    }
 }

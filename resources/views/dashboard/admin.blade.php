@@ -239,12 +239,6 @@
         </div>
 
         <div class="p-6 text-center hover:scale-110 transition-transform duration-300 rounded-2xl border-3" style="background-color: #FFE1AF; border-color: #E2B59A;">
-            <div class="text-4xl mb-3">🎉</div>
-            <h3 class="text-3xl font-outfit font-bold" style="color: #957C62;">{{ $completedReservasi }}</h3>
-            <p class="font-semibold" style="color: #B77466;">Completed</p>
-        </div>
-
-        <div class="p-6 text-center hover:scale-110 transition-transform duration-300 rounded-2xl border-3" style="background-color: #FFE1AF; border-color: #E2B59A;">
             <div class="text-4xl mb-3">💰</div>
             <h3 class="text-2xl font-outfit font-bold" style="color: #957C62;">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
             <p class="font-semibold" style="color: #B77466;">Total Revenue</p>

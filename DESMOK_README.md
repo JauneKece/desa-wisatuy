@@ -278,7 +278,7 @@ DELETE /berita/{id}              - Hapus Berita
 - tanggal_kunjungan
 - jumlah_peserta
 - total_harga
-- status (pending, confirmed, completed, cancelled)
+- status (pending, confirmed, cancelled)
 - catatan
 - timestamps
 

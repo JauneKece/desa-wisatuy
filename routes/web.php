@@ -46,26 +46,26 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
     Route::get('/reservasi/{reservasi}', [ReservasiController::class, 'show'])->name('reservasi.show');
     
-    // Customer, admin, and manager can edit/update reservasi (rule details handled in controller)
-    Route::middleware('check.role:customer,admin,manager')->group(function () {
+    // Pelanggan, admin, and owner can edit/update reservasi (rule details handled in controller)
+    Route::middleware('check.role:pelanggan,admin,owner')->group(function () {
         Route::get('/reservasi/{reservasi}/edit', [ReservasiController::class, 'edit'])->name('reservasi.edit');
         Route::patch('/reservasi/{reservasi}', [ReservasiController::class, 'update'])->name('reservasi.update');
     });
 
-    // Customer, Admin & Manager can delete reservasi
-    Route::middleware('check.role:customer,admin,manager')->group(function () {
+    // Pelanggan, Admin & Owner can delete reservasi
+    Route::middleware('check.role:pelanggan,admin,owner')->group(function () {
         Route::delete('/reservasi/{reservasi}', [ReservasiController::class, 'destroy'])->name('reservasi.destroy');
     });
     
-    // Admin & Manager routes
-    Route::middleware('check.role:admin,manager')->group(function () {
+    // Admin & Owner routes
+    Route::middleware('check.role:admin,owner')->group(function () {
         Route::resource('objek-wisata', ObjekWisataController::class)->except(['index', 'show'])->parameters(['objek-wisata' => 'objekWisata']);
         Route::resource('paket-wisata', PaketWisataController::class)->except(['index', 'show'])->parameters(['paket-wisata' => 'paketWisata']);
         Route::resource('penginapan', PenginapanController::class)->except(['index', 'show'])->parameters(['penginapan' => 'penginapan']);
     });
     
-    // Staff & Admin can create berita
-    Route::middleware('check.role:admin,manager,staff')->group(function () {
+    // Admin & Owner can manage berita (news/articles)
+    Route::middleware('check.role:admin,owner')->group(function () {
         Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
         Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
         Route::get('/berita/{berita}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
@@ -80,11 +80,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/payments/{payment}', [\App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show');
     Route::put('/payments/{payment}/reupload', [\App\Http\Controllers\PaymentController::class, 'reupload'])->name('payments.reupload');
 
-    // Admin views for payments
-    Route::middleware('check.role:admin,manager')->group(function () {
+    // Admin, Owner, and Bendahara views for payments & reservasi
+    Route::middleware('check.role:admin,owner,bendahara')->group(function () {
         Route::get('/admin/payments', [\App\Http\Controllers\PaymentController::class, 'adminIndex'])->name('admin.payments.index');
         Route::get('/admin/payments/{payment}', [\App\Http\Controllers\PaymentController::class, 'adminShow'])->name('admin.payments.show');
         Route::post('/admin/payments/{payment}/verify', [\App\Http\Controllers\PaymentController::class, 'verify'])->name('admin.payments.verify');
+        
+        // Bendahara can view all reservasi for financial management
+        Route::get('/admin/reservasi', [ReservasiController::class, 'adminIndex'])->name('admin.reservasi.index');
+        Route::get('/admin/reservasi/{reservasi}', [ReservasiController::class, 'adminShow'])->name('admin.reservasi.show');
     });
 });
 

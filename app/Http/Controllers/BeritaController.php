@@ -53,7 +53,7 @@ class BeritaController extends Controller
     public function edit(Request $request, Berita $berita)
     {
         $user = $request->user();
-        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'manager']))) {
+        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'owner']))) {
             abort(403, 'Unauthorized');
         }
         $kategoris = KategoriBerita::all();
@@ -63,7 +63,7 @@ class BeritaController extends Controller
     public function update(Request $request, Berita $berita)
     {
         $user = $request->user();
-        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'manager']))) {
+        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'owner']))) {
             abort(403, 'Unauthorized');
         }
 
@@ -86,7 +86,7 @@ class BeritaController extends Controller
     public function destroy(Request $request, Berita $berita)
     {
         $user = $request->user();
-        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'manager']))) {
+        if (! $user || ($user->id !== $berita->user_id && !in_array($user->role, ['admin', 'owner']))) {
             abort(403, 'Unauthorized');
         }
         $berita->delete();

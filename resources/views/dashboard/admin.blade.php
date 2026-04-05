@@ -225,7 +225,7 @@
     <!-- Reservation Status -->
     <h2 class="text-3xl font-outfit font-bold mb-8 mt-16" style="color: #957C62;">📊 Status Reservasi</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="p-6 text-center hover:scale-110 transition-transform duration-300 rounded-2xl border-3" style="background-color: #FFE1AF; border-color: #E2B59A;">
             <div class="text-4xl mb-3">⏳</div>
             <h3 class="text-3xl font-outfit font-bold" style="color: #957C62;">{{ $pendingReservasi }}</h3>

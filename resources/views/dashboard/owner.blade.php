@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard Manager - Desmok')
+@section('title', 'Dashboard Pemilik - Desmok')
 
 @section('content')
 <div class="container-responsive py-8 md:py-12">
     <!-- Header -->
     <div class="mb-12 animate-slide-in">
-        <h1 class="text-5xl md:text-6xl font-outfit font-black mb-2" style="color: #957C62;">👨‍⚙️ Dashboard Manager</h1>
+        <h1 class="text-5xl md:text-6xl font-outfit font-black mb-2" style="color: #957C62;">🏢 Dashboard Pemilik/Manager</h1>
         <p class="text-xl" style="color: #B77466;">Kelola operasional wisata dan reservasi pelanggan</p>
     </div>
 
@@ -14,7 +14,7 @@
 
     <!-- Welcome Card -->
     <div class="p-8 mb-12 rounded-3xl border-3 overflow-hidden" style="background-color: #FFE1AF; border-color: #B77466;">
-        <h2 class="text-3xl font-outfit font-bold mb-3" style="color: #957C62;">👋 Selamat Datang, Manager {{ auth()->user()->name }}!</h2>
+        <h2 class="text-3xl font-outfit font-bold mb-3" style="color: #957C62;">👋 Selamat Datang, Pemilik {{ auth()->user()->name }}!</h2>
         <p class="text-lg" style="color: #B77466;">Pantau operasional wisata, kelola reservasi, dan atur paket serta penginapan dengan mudah.</p>
     </div>
 

@@ -33,9 +33,36 @@
             filter: drop-shadow(0 4px 8px rgba(183, 116, 102, 0.2));
         }
 
-        .nav-link {
+        .nav-item {
             position: relative;
-            color: #957C62 !important;
+        }
+
+        .nav-item.dropdown .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 991px) {
+            .nav-item.dropdown .dropdown-menu {
+                position: static;
+                background-color: rgba(226, 181, 154, 0.5);
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+                margin-top: 0.5rem;
+                transform: none;
+                left: auto;
+            }
+
+            .nav-item.dropdown .dropdown-menu .dropdown-item {
+                padding-left: 2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        .nav-link {
             font-weight: 500;
             transition: all 0.3s ease;
             display: flex;
@@ -120,31 +147,128 @@
             .navbar-collapse {
                 background: rgba(255, 225, 175, 0.98);
                 border-radius: 0 0 1.5rem 1.5rem;
-                padding: 1rem 0;
+                padding: 0.75rem 0;
                 margin-top: 0.5rem;
                 box-shadow: 0 4px 12px rgba(149, 124, 98, 0.1);
                 animation: slideDown 0.3s ease forwards;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1029;
             }
 
             .navbar-collapse.show {
-                display: block !important;
+                display: flex !important;
+                flex-direction: column;
             }
 
             .navbar-nav {
                 width: 100%;
                 text-align: center;
+                flex-direction: column;
+                gap: 0 !important;
             }
 
             .nav-link {
-                padding: 0.75rem 1.5rem !important;
-                font-size: 1rem;
+                padding: 0.65rem 1rem !important;
+                font-size: 0.9rem;
                 border-radius: 0;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link:hover::after {
+                display: none;
             }
 
             .btn-auth {
-                width: calc(100% - 3rem);
+                width: calc(100% - 2rem);
                 margin: 0.5rem auto;
                 text-align: center;
+            }
+
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+                gap: 0.25rem;
+            }
+
+            .nav-link {
+                padding: 0.6rem 0.75rem !important;
+                font-size: 0.85rem;
+            }
+
+            .btn-auth {
+                width: calc(100% - 1.5rem);
+                margin: 0.4rem auto;
+                font-size: 0.85rem;
+                padding: 0.4rem 0.75rem !important;
+            }
+
+            .navbar-nav {
+                gap: 0 !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav.navbar {
+                padding: 0.5rem 0 !important;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .navbar-brand span.text-2xl {
+                font-size: 1.25rem;
+            }
+
+            nav .container-fluid {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            .nav-link {
+                padding: 0.6rem 0.5rem !important;
+                font-size: 0.8rem;
+            }
+
+            .nav-link span:last-child {
+                font-size: 0.75rem;
+            }
+
+            .navbar-toggler {
+                padding: 0.3rem 0.5rem !important;
+            }
+
+            .navbar-toggler svg {
+                width: 20px !important;
+                height: 20px !important;
+            }
+
+            .btn-auth {
+                width: calc(100% - 1rem);
+                margin: 0.35rem auto;
+                font-size: 0.8rem;
+                padding: 0.35rem 0.5rem !important;
+            }
+
+            .dropdown-menu {
+                font-size: 0.85rem;
+            }
+
+            .dropdown-item {
+                padding: 0.6rem 0.75rem;
             }
         }
 
@@ -207,6 +331,7 @@
             border: 2px solid #E2B59A;
             border-radius: 0.75rem;
             animation: fadeIn 0.2s ease;
+            min-width: 200px;
         }
 
         .dropdown-item {
@@ -223,6 +348,24 @@
 
         .dropdown-divider {
             border-color: #E2B59A;
+        }
+
+        @media (max-width: 576px) {
+            .dropdown-menu {
+                min-width: 150px;
+                font-size: 0.9rem;
+            }
+
+            .dropdown-item {
+                padding: 0.6rem 0.75rem;
+            }
+
+            .navbar-nav .dropdown-menu-end {
+                right: 0 !important;
+                left: auto !important;
+                position: absolute;
+                top: 100%;
+            }
         }
 
         @keyframes slideDown {
@@ -246,7 +389,7 @@
         }
     </style>
 
-    <div class="container-fluid ps-3 ps-sm-4 pe-3 pe-sm-4 d-flex align-items-center justify-content-between">
+    <div class="container-fluid ps-2 ps-sm-3 ps-md-4 pe-2 pe-sm-3 pe-md-4 d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="{{ route('home') }}">
             <span class="text-2xl">🍄</span>
             <span class="d-none d-sm-inline">DESMOK</span>
@@ -299,6 +442,8 @@
                             <span class="d-none d-md-inline">Dashboard</span>
                         </a>
                     </li>
+                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span>👤</span>
@@ -351,6 +496,8 @@
                 toggle.classList.add('is-open');
                 toggle.classList.remove('collapsed');
                 toggle.setAttribute('aria-expanded', 'true');
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = 'hidden';
             };
 
             const closeMobileMenu = () => {
@@ -358,10 +505,13 @@
                 toggle.classList.remove('is-open');
                 toggle.classList.add('collapsed');
                 toggle.setAttribute('aria-expanded', 'false');
+                // Restore body scroll when menu is closed
+                document.body.style.overflow = 'auto';
             };
 
             if (toggle && navbarCollapse) {
-                toggle.addEventListener('click', function() {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     if (window.innerWidth >= 992) return;
 
                     if (navbarCollapse.classList.contains('show')) {
@@ -380,7 +530,7 @@
                 }
             });
 
-            const navLinks = document.querySelectorAll('.navbar-collapse .nav-link');
+            const navLinks = document.querySelectorAll('.navbar-collapse .nav-link:not(.dropdown-toggle)');
             
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
@@ -390,6 +540,7 @@
                 });
             });
 
+            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!navbar.contains(event.target) && navbarCollapse && navbarCollapse.classList.contains('show')) {
                     if (window.innerWidth < 992) {
@@ -398,10 +549,26 @@
                 }
             });
 
+            // Close menu on resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 992 && navbarCollapse) {
                     closeMobileMenu();
+                    document.body.style.overflow = 'auto';
                 }
+            });
+
+            // Handle dropdown toggle on mobile
+            const dropdownToggles = document.querySelectorAll('.navbar-collapse .dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth < 992) {
+                        e.preventDefault();
+                        const menu = this.nextElementSibling;
+                        if (menu && menu.classList.contains('dropdown-menu')) {
+                            menu.classList.toggle('show');
+                        }
+                    }
+                });
             });
         });
     </script>

@@ -116,7 +116,7 @@
                     <span class="inline-block w-8 h-8 rounded-full text-white text-center mr-3 text-sm font-bold" style="background-color: #B77466;">3</span>
                     👤 Data Pelanggan
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
                     <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
                         <p class="text-sm font-bold mb-2" style="color: #957C62;">Nama</p>
                         <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->pelanggan->user->name }}</p>
@@ -128,10 +128,6 @@
                     <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
                         <p class="text-sm font-bold mb-2" style="color: #957C62;">Nomor Telepon</p>
                         <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->pelanggan->telepon ?? '—' }}</p>
-                    </div>
-                    <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
-                        <p class="text-sm font-bold mb-2" style="color: #957C62;">Alamat</p>
-                        <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->pelanggan->alamat ?? '—' }}</p>
                     </div>
                 </div>
             </div>

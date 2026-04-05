@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Pelanggan;
+use App\Models\Karyawan;
 use App\Models\KategoriWisata;
 use App\Models\ObjekWisata;
 use App\Models\PaketWisata;
@@ -19,8 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create Admin User
-        User::create([
+        // ============================================================
+        // 1. CREATE ADMIN USER & KARYAWAN
+        // ============================================================
+        $adminUser = User::create([
             'name' => 'Admin Desmok',
             'email' => 'admin@desmok.com',
             'password' => Hash::make('password123'),
@@ -28,35 +31,68 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        // Create Manager User
-        User::create([
-            'name' => 'Manager Desmok',
-            'email' => 'manager@desmok.com',
+        Karyawan::create([
+            'user_id' => $adminUser->id,
+            'nomor_identitas' => '1234567890123456',
+            'departemen' => 'IT & Sistem',
+            'posisi' => 'Administrator Sistem',
+            'gaji' => 7500000,
+            'foto' => null,
+        ]);
+
+        // ============================================================
+        // 2. CREATE OWNER (PEMILIK) USER & KARYAWAN
+        // ============================================================
+        $ownerUser = User::create([
+            'name' => 'Pemilik Desmok',
+            'email' => 'owner@desmok.com',
             'password' => Hash::make('password123'),
-            'role' => 'manager',
+            'role' => 'owner',
             'is_active' => true,
         ]);
 
-        // Create Staff User
-        User::create([
-            'name' => 'Staff Desmok',
-            'email' => 'staff@desmok.com',
+        Karyawan::create([
+            'user_id' => $ownerUser->id,
+            'nomor_identitas' => '2345678901234567',
+            'departemen' => 'Manajemen Operasional',
+            'posisi' => 'Pemilik/Manager Wisata',
+            'gaji' => 9000000,
+            'foto' => null,
+        ]);
+
+        // ============================================================
+        // 3. CREATE BENDAHARA (STAFF KEUANGAN) USER & KARYAWAN
+        // ============================================================
+        $bendaharaUser = User::create([
+            'name' => 'Bendahara Desmok',
+            'email' => 'bendahara@desmok.com',
             'password' => Hash::make('password123'),
-            'role' => 'staff',
+            'role' => 'bendahara',
             'is_active' => true,
         ]);
 
-        // Create Sample Customer
+        Karyawan::create([
+            'user_id' => $bendaharaUser->id,
+            'nomor_identitas' => '3456789012345678',
+            'departemen' => 'Keuangan & Akuntansi',
+            'posisi' => 'Bendahara Utama',
+            'gaji' => 6500000,
+            'foto' => null,
+        ]);
+
+        // ============================================================
+        // 4. CREATE SAMPLE PELANGGAN (CUSTOMER)
+        // ============================================================
         User::create([
-            'name' => 'John Doe',
-            'email' => 'customer@desmok.com',
+            'name' => 'Pelanggan Desmok',
+            'email' => 'pelanggan@desmok.com',
             'password' => Hash::make('password123'),
-            'role' => 'customer',
+            'role' => 'pelanggan',
             'is_active' => true,
         ]);
 
         // Ensure Pelanggan record exists for all customer users
-        $customerUsers = User::where('role', 'customer')->get();
+        $customerUsers = User::where('role', 'pelanggan')->get();
         foreach ($customerUsers as $cu) {
             Pelanggan::updateOrCreate(
                 ['user_id' => $cu->id],

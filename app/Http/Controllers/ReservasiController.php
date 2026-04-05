@@ -147,6 +147,37 @@ class ReservasiController extends Controller
         return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');
     }
 
+    /**
+     * Admin/Owner/Bendahara view all reservasi with financial details
+     */
+    public function adminIndex(Request $request)
+    {
+        $user = $request->user();
+        if (! $user || ! in_array($user->role, ['admin', 'owner', 'bendahara'])) {
+            abort(403, 'Unauthorized');
+        }
+
+        $reservasi = Reservasi::with('pelanggan', 'paketWisata', 'penginapan', 'payment')
+            ->latest()
+            ->paginate(15);
+
+        return view('admin.reservasi.index', compact('reservasi'));
+    }
+
+    /**
+     * Admin/Owner/Bendahara view single reservasi with full details and payments
+     */
+    public function adminShow(Reservasi $reservasi, Request $request)
+    {
+        $user = $request->user();
+        if (! $user || ! in_array($user->role, ['admin', 'owner', 'bendahara'])) {
+            abort(403, 'Unauthorized');
+        }
+
+        $reservasi->load('pelanggan', 'paketWisata', 'penginapan', 'payment');
+        return view('admin.reservasi.show', compact('reservasi'));
+    }
+
     private function calculateTotal($data)
     {
         $total = 0;

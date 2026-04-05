@@ -56,12 +56,4 @@ class Reservasi extends Model
     {
         return $this->hasMany(Payment::class);
     }
-
-    /**
-     * Get latest payment record.
-     */
-    public function latestPayment()
-    {
-        return $this->hasOne(Payment::class)->latestOfMany();
-    }
 }

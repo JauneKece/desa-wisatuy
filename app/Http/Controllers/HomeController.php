@@ -9,6 +9,7 @@ use App\Models\Berita;
 use App\Models\Reservasi;
 use App\Models\User;
 use App\Models\Pelanggan;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,14 +33,14 @@ class HomeController extends Controller
             return redirect()->route('login');
         }
 
-        if ($user->role === 'customer') {
+        if ($user->role === 'pelanggan') {
             return $this->customerDashboard($user);
         } elseif ($user->role === 'admin') {
             return $this->adminDashboard($user);
-        } elseif ($user->role === 'manager') {
-            return $this->managerDashboard($user);
-        } elseif ($user->role === 'staff') {
-            return $this->staffDashboard($user);
+        } elseif ($user->role === 'owner') {
+            return $this->ownerDashboard($user);
+        } elseif ($user->role === 'bendahara') {
+            return $this->bendaharaDashboard($user);
         }
 
         return redirect()->route('home');
@@ -51,9 +52,9 @@ class HomeController extends Controller
     private function adminDashboard($user)
     {
         $totalUsers = User::count();
-        $totalCustomers = User::where('role', 'customer')->count();
-        $totalStaff = User::where('role', 'staff')->count();
-        $totalManagers = User::where('role', 'manager')->count();
+        $totalCustomers = User::where('role', 'pelanggan')->count();
+        $totalStaff = User::where('role', 'bendahara')->count();
+        $totalManagers = User::where('role', 'owner')->count();
         
         $totalReservasi = Reservasi::count();
         $pendingReservasi = Reservasi::where('status', 'pending')->count();
@@ -88,9 +89,9 @@ class HomeController extends Controller
     }
 
     /**
-     * Manager Dashboard
+     * Owner Dashboard (Pemilik/Manager Operasional)
      */
-    private function managerDashboard($user)
+    private function ownerDashboard($user)
     {
         $totalReservasi = Reservasi::count();
         $pendingReservasi = Reservasi::where('status', 'pending')->count();
@@ -117,7 +118,7 @@ class HomeController extends Controller
             ->with('pelanggan', 'paketWisata', 'penginapan')
             ->latest()->take(5)->get();
         
-        return view('dashboard.manager', compact(
+        return view('dashboard.owner', compact(
             'totalReservasi', 'pendingReservasi', 'confirmedReservasi',
             'totalPaketWisata', 'totalPenginapan', 'totalObjekWisata',
             'totalRevenue', 'revenueThisMonth',
@@ -126,29 +127,53 @@ class HomeController extends Controller
     }
 
     /**
-     * Staff Dashboard
+     * Bendahara Dashboard (Staff Keuangan)
+     * Kelola pembayaran, reservasi, dan analisa revenue
      */
-    private function staffDashboard($user)
+    private function bendaharaDashboard($user)
     {
-        $totalBerita = Berita::count();
-        $beritaByUser = Berita::where('user_id', $user->id)->count();
+        // Payment statistics
+        $totalPayments = Payment::count();
+        $pendingPayments = Payment::where('status', 'pending')->count();
+        $approvedPayments = Payment::where('status', 'paid')->count();
+        $rejectedPayments = Payment::where('status', 'failed')->count();
+        
+        // Reservation statistics
+        $totalReservasi = Reservasi::count();
+        $pendingReservasi = Reservasi::where('status', 'pending')->count();
+        $confirmedReservasi = Reservasi::where('status', 'confirmed')->count();
+        $cancelledReservasi = Reservasi::where('status', 'cancelled')->count();
+        
+        // Revenue analysis
+        $totalRevenue = Reservasi::where('status', '!=', 'cancelled')
+            ->sum('total_harga');
+        $revenueThisMonth = Reservasi::where('status', '!=', 'cancelled')
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->sum('total_harga');
+        $pendingRevenue = Reservasi::where('status', 'pending')
+            ->sum('total_harga');
+        
+        // Recent reservasi with payment status
+        $recentReservasi = Reservasi::with('pelanggan', 'paketWisata', 'payment')
+            ->latest()->take(8)->get();
+        
+        // Confirmed reservasi
+        $confirmedReservasiDetail = Reservasi::where('status', 'confirmed')
+            ->with('pelanggan', 'paketWisata', 'penginapan', 'payment')
+            ->latest()->take(5)->get();
+        
+        // Destination info for reference
         $totalObjekWisata = ObjekWisata::count();
         $totalPaketWisata = PaketWisata::count();
         $totalPenginapan = Penginapan::count();
         
-        // Recent berita
-        $recentBerita = Berita::with('user', 'kategoriBerita')
-            ->latest()->take(6)->get();
-        
-        // My berita
-        $myBerita = Berita::where('user_id', $user->id)
-            ->with('kategoriBerita')
-            ->latest()->take(5)->get();
-        
-        return view('dashboard.staff', compact(
-            'totalBerita', 'beritaByUser',
-            'totalObjekWisata', 'totalPaketWisata', 'totalPenginapan',
-            'recentBerita', 'myBerita'
+        return view('dashboard.bendahara', compact(
+            'totalPayments', 'pendingPayments', 'approvedPayments', 'rejectedPayments',
+            'totalReservasi', 'pendingReservasi', 'confirmedReservasi', 'cancelledReservasi',
+            'totalRevenue', 'revenueThisMonth', 'pendingRevenue',
+            'recentReservasi', 'confirmedReservasiDetail',
+            'totalObjekWisata', 'totalPaketWisata', 'totalPenginapan'
         ));
     }
 

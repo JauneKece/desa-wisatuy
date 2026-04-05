@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <!-- Back button moved to guest layout -->
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -38,6 +39,10 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+
+            <a href="{{ route('register') }}" class="ms-3 inline-block px-4 py-2 rounded-lg text-sm font-semibold text-center no-underline" style="border:2px solid #B77466; color: #957C62;">
+                {{ __('Register') }}
+            </a>
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}

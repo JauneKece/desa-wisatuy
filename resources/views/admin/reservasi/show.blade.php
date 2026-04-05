@@ -127,7 +127,7 @@
                     </div>
                     <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
                         <p class="text-sm font-bold mb-2" style="color: #957C62;">Nomor Telepon</p>
-                        <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->pelanggan->nomor_telepon ?? '—' }}</p>
+                        <p class="text-lg font-semibold" style="color: #B77466;">{{ $reservasi->pelanggan->telepon ?? '—' }}</p>
                     </div>
                     <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
                         <p class="text-sm font-bold mb-2" style="color: #957C62;">Alamat</p>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Pelanggan;
 use App\Models\KategoriWisata;
 use App\Models\ObjekWisata;
 use App\Models\PaketWisata;
@@ -53,6 +54,23 @@ class DatabaseSeeder extends Seeder
             'role' => 'customer',
             'is_active' => true,
         ]);
+
+        // Ensure Pelanggan record exists for all customer users
+        $customerUsers = User::where('role', 'customer')->get();
+        foreach ($customerUsers as $cu) {
+            Pelanggan::updateOrCreate(
+                ['user_id' => $cu->id],
+                [
+                    'nomor_identitas' => null,
+                    'jenis_identitas' => '',
+                    'alamat' => '',
+                    'kota' => '',
+                    'provinsi' => '',
+                    'kode_pos' => '',
+                    'telepon' => '081234567890',
+                ]
+            );
+        }
 
         // Create Kategori Wisata
         $kategoris = [

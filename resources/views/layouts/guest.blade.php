@@ -35,6 +35,14 @@
     </head>
     <body class="font-sans antialiased" style="background: linear-gradient(135deg, #957C62 0%, #B77466 50%, #8B6F5F 100%); background-attachment: fixed;">
         <div class="relative min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 px-4">
+            <!-- Global fixed back button (top-left) outside the auth card) -->
+            <div style="position:fixed; top:8px; left:8px; z-index:9999;">
+                <a href="{{ route('home') }}" aria-label="Back to home" class="inline-flex items-center justify-center rounded-full shadow-md hover:scale-105 transition-transform" style="width:48px; height:48px; background-color: rgba(255,226,175,0.95); border: 3px solid #957C62;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: #957C62;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </a>
+            </div>
             
             <div class="relative z-10">
                 <a href="/" class="inline-block">

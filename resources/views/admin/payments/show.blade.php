@@ -210,7 +210,7 @@
                     </div>
                     <div>
                         <p class="text-xs font-semibold" style="color: #B77466;">No. Telepon</p>
-                        <p class="font-semibold" style="color: #957C62;">{{ $payment->reservasi->pelanggan->nomor_telepon ?? '-' }}</p>
+                        <p class="font-semibold" style="color: #957C62;">{{ $payment->reservasi->pelanggan->telepon ?? '-' }}</p>
                     </div>
                 </div>
 

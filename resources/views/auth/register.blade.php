@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <!-- Back button moved to guest layout -->
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -14,6 +15,13 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+        
+        <!-- Phone Number -->
+        <div class="mt-4">
+            <x-input-label for="telepon" :value="__('Phone Number')" />
+            <x-text-input id="telepon" class="block mt-1 w-full" type="text" name="telepon" :value="old('telepon')" required autocomplete="tel" />
+            <x-input-error :messages="$errors->get('telepon')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -39,9 +47,15 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        
+
         <div class="flex items-center justify-end mt-4">
             <a class="no-underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="color: #957C62; focus-ring-color: #B77466; focus-ring-offset-color: #FFE1AF;" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
+            </a>
+
+            <a href="{{ route('login') }}" class="ms-3 inline-block px-4 py-2 rounded-lg text-sm font-semibold text-center no-underline" style="border:2px solid #B77466; color: #957C62;">
+                {{ __('Log in') }}
             </a>
 
             <x-primary-button class="ms-4">

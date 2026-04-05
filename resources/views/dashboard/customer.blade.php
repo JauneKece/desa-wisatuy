@@ -207,7 +207,7 @@
                 </div>
                 <div class="flex justify-between text-sm">
                     <span style="color: #B77466;">💰 Harga:</span>
-                    <span class="font-bold" style="color: #957C62;">Rp {{ number_format($paket->harga, 0, ',', '.') }}</span>
+                    <span class="font-bold" style="color: #957C62;">Rp {{ number_format($paket->harga_paket, 0, ',', '.') }}</span>
                 </div>
             </div>
             <a href="{{ route('paket-wisata.show', $paket->id) }}" class="inline-block w-full text-center px-4 py-2 text-white rounded transition-all text-sm font-semibold" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
@@ -235,7 +235,7 @@
                 </div>
                 <div class="flex justify-between text-sm">
                     <span style="color: #B77466;">💰 Tarif:</span>
-                    <span class="font-bold" style="color: #957C62;">Rp {{ number_format($penginapan->harga_per_malam, 0, ',', '.') }}/malam</span>
+                    <span class="font-bold" style="color: #957C62;">Rp {{ number_format($penginapan->harga_penginapan, 0, ',', '.') }}/malam</span>
                 </div>
             </div>
             <a href="{{ route('penginapan.show', $penginapan->id) }}" class="inline-block w-full text-center px-4 py-2 text-white rounded transition-all text-sm font-semibold" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">

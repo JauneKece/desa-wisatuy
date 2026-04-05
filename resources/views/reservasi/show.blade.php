@@ -102,7 +102,7 @@
                 <p class="text-sm font-bold mb-3" style="color: #957C62;">👤 Data Pelanggan</p>
                 <div class="p-4 rounded-lg" style="background-color: #FFE1AF; border-left: 4px solid #B77466;">
                     <p class="font-semibold" style="color: #957C62;">{{ $reservasi->pelanggan->user->name }}</p>
-                    <p class="text-sm" style="color: #B77466;">{{ $reservasi->pelanggan->nomor_telepon ?? '—' }}</p>
+                        <p class="text-sm" style="color: #B77466;">{{ $reservasi->pelanggan->telepon ?? '—' }}</p>
                     <p class="text-sm" style="color: #B77466;">{{ $reservasi->pelanggan->user->email ?? '—' }}</p>
                 </div>
             </div>

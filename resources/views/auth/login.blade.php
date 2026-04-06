@@ -34,11 +34,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="no-underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="color: #957C62; focus-ring-color: #B77466; focus-ring-offset-color: #FFE1AF;" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+            <span class="no-underline text-sm" style="color: #957C62;">{{ __("Don't have an account?") }}</span>
 
             <a href="{{ route('register') }}" class="ms-3 inline-block px-4 py-2 rounded-lg text-sm font-semibold text-center no-underline" style="border:2px solid #B77466; color: #957C62;">
                 {{ __('Register') }}

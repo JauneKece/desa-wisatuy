@@ -11,7 +11,7 @@
                 <h1 class="text-3xl md:text-4xl font-bold mb-2" style="color: #957C62;">📅 Daftar Reservasi</h1>
                 <p class="text-sm md:text-base" style="color: #B77466;">Kelola dan pantau semua reservasi wisata Anda</p>
             </div>
-            @if (auth()->check() && auth()->user()->role === 'customer')
+            @if (auth()->check() && auth()->user()->role === 'pelanggan')
                 <a href="{{ route('reservasi.create') }}" class="inline-block w-full md:w-auto px-6 py-3 text-white font-bold rounded-lg transition duration-150 hover:scale-105 text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">➕ Buat Reservasi Baru</a>
             @endif
         </div>
@@ -100,7 +100,7 @@
                                     <a href="{{ route('reservasi.show', $item) }}" class="px-3 py-1 text-white text-xs font-bold rounded transition-all w-full text-center" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                                         👁️ Lihat
                                     </a>
-                                    @if (auth()->user()->role === 'customer' && $item->status === 'pending' && $item->pelanggan->user_id === auth()->user()->id)
+                                    @if (auth()->user()->role === 'pelanggan' && $item->status === 'pending' && $item->pelanggan->user_id === auth()->user()->id)
                                         <a href="{{ route('reservasi.edit', $item) }}" class="px-3 py-1 text-white text-xs font-bold rounded transition-all w-full text-center" style="background-color: #E2B59A;" onmouseover="this.style.backgroundColor='#B77466'" onmouseout="this.style.backgroundColor='#E2B59A'">
                                             ✏️ Edit
                                         </a>
@@ -126,7 +126,7 @@
                                     <p class="text-4xl mb-3">📭</p>
                                     <p class="text-lg font-semibold">Belum ada reservasi</p>
                                     <p class="text-sm mt-2">Mulai lakukan reservasi untuk menikmati pengalaman wisata yang luar biasa!</p>
-                                    @if (auth()->check() && auth()->user()->role === 'customer')
+                                    @if (auth()->check() && auth()->user()->role === 'pelanggan')
                                         <a href="{{ route('reservasi.create') }}" class="inline-block mt-4 px-6 py-2 text-white font-bold rounded-lg transition duration-150" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                                             ➕ Buat Reservasi Sekarang
                                         </a>
@@ -148,7 +148,7 @@
                     <p class="text-4xl mb-3">📭</p>
                     <p class="text-lg font-semibold">Belum ada reservasi</p>
                     <p class="text-sm mt-2">Mulai lakukan reservasi untuk menikmati pengalaman wisata yang luar biasa!</p>
-                    @if (auth()->check() && auth()->user()->role === 'customer')
+                    @if (auth()->check() && auth()->user()->role === 'pelanggan')
                         <a href="{{ route('reservasi.create') }}" class="inline-block mt-4 px-6 py-2 text-white font-bold rounded-lg transition duration-150" style="background-color: #B77466;" onmouseover="this.style.backgroundColor='#957C62'" onmouseout="this.style.backgroundColor='#B77466'">
                             ➕ Buat Reservasi Sekarang
                         </a>
